@@ -1,0 +1,52 @@
+body {
+	margin: 0;
+}
+
+.vertical-menu {
+	float:  left;
+	width: 20%;
+	position: fixed;
+	height: 100%;
+	overflow: auto;
+	background-color: #f1f1f1;
+}
+
+.vertical-menu a {
+	display: block;
+	background-color: #eee;
+	padding 12px;
+	text-decoration: none;
+}
+
+.vertical-menu a.active {
+	background-color: #04AA6D;
+	color: white;
+}
+
+.vertical-menu a:hove:not(.active) {
+	background-color: #555;
+	color: white;
+}
+
+
+.content {
+	display: none;
+	float:  left;
+	margin-left:25%;
+	width:  80%;
+	padding:1px 16px;
+	height: 100%;
+}
+
+/* TODO:  fix height and scroll issue in small size */
+@media (max-width:  600px) { 
+	.vertical-menu {
+		width: 100%;
+		height: 20%;
+	}
+
+	.content {
+		width: 100%;
+		height: 80%;
+	}
+}

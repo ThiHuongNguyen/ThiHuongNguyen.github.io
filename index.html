@@ -1,17 +1,81 @@
-<! DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-	<header>	
-		<title>My Web Apps</title>
-	</header>
-	<body>
-		<h1>Welcome page</h1>
-		<div>
-			<a href="#math-app">Math application</a>"
-		</div>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Math</title>
+    <style>
+        body {
+            text-align: center;
+        }
 
-		<div id="math-app">Math application>
-		<h2>Welcome to Math application</h2>
-		<p>Test</p>
-		</div>
-	</body>
+        #questionMark {
+            color: red;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Simple Math</h1>
+    <h2><span class="fomular"></span><span id="questionMark">?</span></h2>
+    <label for="userInput">Enter the result: </label>
+    <input type="text" name="userInput" id="userInput">
+    <input type="submit" value="Submit" id="userSubmit">
+    <div class="resultParas">
+        <p class="resultMessage"></p>
+        <p class="expectedResult"></p>
+        <p class="status"></p>
+    </div>
+
+    <script>
+        let num1, num2;
+
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min) + min);
+        }
+        
+        function getFomular() {
+            num1 = getRandomInt(1, 10);
+            num2 = getRandomInt(1, 10);
+            const fomular = document.querySelector('.fomular');
+            fomular.textContent = num1 + ' + ' + num2 + ' = ';
+        }
+        
+        getFomular();
+
+        const userInput = document.querySelector('#userInput');
+        const userSubmit = document.querySelector('#userSubmit');
+
+        const resultParas = document.querySelector('.resultParas');
+        const resultMessage = document.querySelector('.resultMessage');
+        const expectedResult = document.querySelector('.expectedResult');
+        const status = document.querySelector('.status');
+
+        let totalCount = 0;
+        let correctCount = 0;
+
+        function checkResult() {
+            totalCount++;
+            let input = Number(userInput.value);
+
+            if (input === (num1 + num2)) {
+                resultMessage.textContent = 'Correct! Weldone';
+                correctCount ++;
+            } else {
+                resultMessage.textContent = 'Bad luck! Incorrect!!!';
+                expectedResult.textContent = 'Expected result is ' + (num1 + num2);
+            }
+
+            let percentage = correctCount/totalCount * 100;
+            status.textContent = 'Your correct percentage is ' + percentage;            
+            getFomular();
+            userInput.value = '';
+        }
+
+        userSubmit.addEventListener('click', checkResult);
+    </script>
+</body>
 </html>
